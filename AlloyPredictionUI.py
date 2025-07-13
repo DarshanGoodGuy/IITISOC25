@@ -7,7 +7,7 @@ with open("model.pkl", "rb") as f:
     model = pickle.load(f)
 
 
-df = pd.read_csv("final_dataset.csv")
+df = pd.read_csv("final_dataset1.csv")
 
 features_df = df.iloc[:, 1:27]
 
