@@ -72,9 +72,12 @@ if st.button("Predict Properties"):
 
         prediction = model.predict(input_df)[0]  
         with open("sc.pkl", "rb") as f:
-        sc = pickle.load(f)
+            sc = pickle.load(f)
 
-        prediction_original = sc.inverse_transform(prediction)
+        prediction_original = sc.inverse_transform(prediction.reshape(1, -1))[0]
+
+
+
 
         property_names =  ["Calculated Density", "Test Temperature", "Yield Strength", "Ultimate Tensile Strength", "Elongation", "Calculated Young's Modulus"]
 
