@@ -71,7 +71,7 @@ if st.button("Predict Properties"):
         input_df = input_row.to_frame().T
 
         prediction = model.predict(input_df)[0]  
-        sc = MinMaxScalar()
+        sc = MinMaxScaler()
         prediction_original = sc.inverse_transform(prediction)
 
         property_names =  ["Calculated Density", "Test Temperature", "Yield Strength", "Ultimate Tensile Strength", "Elongation", "Calculated Young's Modulus"]
