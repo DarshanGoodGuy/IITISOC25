@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+from sklearn.preprocessing import MinMaxScaler
 
 import pickle
 
@@ -69,13 +70,15 @@ if st.button("Predict Properties"):
 
         input_df = input_row.to_frame().T
 
-        prediction = model.predict(input_df)[0]  # Get the 1D array
+        prediction = model.predict(input_df)[0]  
+        sc = MinMaxScalar()
+        prediction_original = sc.inverse_transform(prediction)
 
         property_names =  ["Calculated Density", "Test Temperature", "Yield Strength", "Ultimate Tensile Strength", "Elongation", "Calculated Young's Modulus"]
 
         prediction_df = pd.DataFrame({
             "Property": property_names,
-            "Predicted Value": prediction
+            "Predicted Value": prediction_original
         })
 
 
